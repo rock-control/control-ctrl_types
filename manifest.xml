@@ -1,0 +1,27 @@
+<package>
+  <description brief="Basic data typed for dynamic robot control">
+  </description>
+  <author>Dennis Mronga/dennis.mronga@dfki.de</author>
+  <maintainer>Dennis Mronga/dennis.mronga@dfki.de</maintainer>
+  <license></license>
+  <url>http://</url>
+  <logo>http://</logo>
+
+  <keywords>
+     <keyword>Control</keyword>
+   </keywords>
+
+  <stage>0</stage>
+  <use>single project</use>
+  <activity>active</activity>
+
+  <classifiers>
+    <classifier>c++</classifier>
+    <classifier>rock</classifier>
+    <classifier>ubuntu</classifier>
+  </classifiers>
+
+  <depend package="base/cmake" />
+  <depend package="base/types" />
+  <tags>stable</tags>
+</package>
