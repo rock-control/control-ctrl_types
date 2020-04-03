@@ -2,11 +2,11 @@
 #define __BASE_ACCELERATION_HPP__
 
 #include <base/Eigen.hpp>
+#include <base/Time.hpp>
 
 namespace base {
 
-class Acceleration{
-public:
+struct Acceleration{
     Acceleration();
     /** Set all members to NaN*/
     void setNaN();
@@ -23,6 +23,14 @@ public:
 
 Acceleration operator+(const Acceleration& a, const Acceleration& b);
 Acceleration operator*(const base::Vector6d& a, const Acceleration& b);
+
+namespace samples {
+
+struct Acceleration : public base::Acceleration{
+    base::Time time;
+};
+
+}
 
 }
 

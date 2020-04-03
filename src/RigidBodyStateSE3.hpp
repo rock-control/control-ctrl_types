@@ -1,16 +1,16 @@
-#ifndef __BASE_CARTESIAN_STATE_HPP__
-#define __BASE_CARTESIAN_STATE_HPP__
+#ifndef __BASE_RIGID_BODY_STATE_SE3_HPP__
+#define __BASE_RIGID_BODY_STATE_SE3_HPP__
 
 #include <base/Pose.hpp>
+#include <base/Wrench.hpp>
 #include <base/Time.hpp>
 #include "Twist.hpp"
 #include "Acceleration.hpp"
 
-namespace base { namespace samples {
+namespace base {
 
-class CartesianState{
-public:
-    CartesianState(){
+struct RigidBodyStateSE3{
+    RigidBodyStateSE3(){
         setNaN();
     }
     /** Set all members to NaN*/
@@ -21,19 +21,24 @@ public:
     bool hasValidTwist() const;
     /** Check if the acceleration is valid, e.g. not NaN*/
     bool hasValidAcceleration() const;
+    /** Check if the wrench is valid, e.g. not NaN*/
+    bool hasValidWrench() const;
 
-    base::Time time;
-    /** Source frame of the transform described by the given pose. */
-    std::string source_frame;
-    /** Target frame of the transform described by the given pose. Note that we have source-in-target convetion, i.e. the transform given by pose
-      * transforms a vector from source to target frame. In this regard pose also decribes the position and orientation of the source frame wrt. the target frame*/
-    std::string target_frame;
     /** 3D position and orientation*/
     base::Pose pose;
     /** 3D Linear and angular velocity*/
     Twist twist;
     /** 3D Linear and angular acceleration*/
     Acceleration acceleration;
+    /** Force and torque*/
+    Wrench wrench;
+};
+
+namespace samples {
+struct RigidBodyStateSE3 : public base::RigidBodyStateSE3{
+    base::Time time;
+    /** Coordinate frame in which all quantities are expressed */
+    std::string frame_id;
 };
 
 }

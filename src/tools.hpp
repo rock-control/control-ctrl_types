@@ -3,11 +3,11 @@
 
 namespace base { namespace  samples {
 
-class CartesianState;
+class RigidBodyStateSE3;
 class RigidBodyState;
 
-void toRigidBodyState(const CartesianState& in, RigidBodyState& out);
-void fromRigidBodyState(const RigidBodyState& in, CartesianState& out);
+void toRigidBodyState(const RigidBodyStateSE3& in, RigidBodyState& out);
+void fromRigidBodyState(const RigidBodyState& in, RigidBodyStateSE3& out);
 
 }
 }

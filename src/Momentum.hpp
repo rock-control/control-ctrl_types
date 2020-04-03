@@ -5,8 +5,7 @@
 
 namespace base {
 
-class Momentum{
-public:
+struct Momentum{
     Momentum(){
         setNaN();
     }

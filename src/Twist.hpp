@@ -2,11 +2,11 @@
 #define __BASE_TWIST_HPP__
 
 #include <base/Eigen.hpp>
+#include <base/Time.hpp>
 
 namespace base {
 
-class Twist{
-public:
+struct Twist{
     Twist();
     /** Set all members to NaN*/
     void setNaN();
@@ -24,6 +24,14 @@ public:
 
 Twist operator+(const Twist& a, const Twist& b);
 Twist operator*(const base::Vector6d& a, const Twist& b);
+
+namespace samples {
+
+struct Twist : public base::Twist{
+    base::Time time;
+};
+
+}
 
 }
 

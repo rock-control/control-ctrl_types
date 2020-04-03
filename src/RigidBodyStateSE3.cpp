@@ -1,26 +1,31 @@
-#include "CartesianState.hpp"
+#include "RigidBodyStateSE3.hpp"
 
-namespace base { namespace samples {
+namespace base {
 
-void CartesianState::setNaN(){
+void RigidBodyStateSE3::setNaN(){
     pose.position.setConstant(std::numeric_limits<double>::quiet_NaN());
     pose.orientation.coeffs().setConstant(std::numeric_limits<double>::quiet_NaN());
     twist.setNaN();
     acceleration.setNaN();
+    wrench.force.setConstant(std::numeric_limits<double>::quiet_NaN());
+    wrench.torque.setConstant(std::numeric_limits<double>::quiet_NaN());
 }
 
-bool CartesianState::hasValidPose() const{
+bool RigidBodyStateSE3::hasValidPose() const{
     return base::isnotnan(pose.position) && base::isnotnan(pose.orientation.coeffs()) &&
            (abs(pose.orientation.squaredNorm()-1.0) < 1e-6);
 }
 
-bool CartesianState::hasValidTwist() const{
+bool RigidBodyStateSE3::hasValidTwist() const{
     return twist.isValid();
 }
 
-bool CartesianState::hasValidAcceleration() const{
+bool RigidBodyStateSE3::hasValidAcceleration() const{
     return acceleration.isValid();
 }
+
+bool RigidBodyStateSE3::hasValidWrench() const{
+    return base::isnotnan(wrench.force) && base::isnotnan(wrench.torque);
 }
 
 Twist operator-(const Pose& a, const Pose& b){
